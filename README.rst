@@ -17,7 +17,7 @@ Description
 In daily engineer's work you sometimes need create simply or a bit more advanced calculations
 and embed them in to master report (which is Word, PDF or other format file). testCalc allow to
 create plain text including mathematical expressions. Math expressions are automatically updated.
-You can force expressions update manually or switch into to dynamic update as you write the text.
+You can force expressions update manually or switch into dynamic update as you write the text.
 So all you need to have your simple dynamic calculation report is just plain text so you can
 copy-past it where you need after all.
 
