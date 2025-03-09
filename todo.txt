@@ -1,8 +1,7 @@
 TODO:
-- float prescision
+- float precision option
 - zoom in zoom out
-- si units
-- copy clipboaed
-- paste from clibboard
+- si units support based on Unim
+- clipboard features
 
 DONE:
