@@ -19,7 +19,10 @@ and embed them in to master report (which is Word, PDF or other format file). te
 create plain text including mathematical expressions. Math expressions are automatically updated.
 You can force expressions update manually or switch into dynamic update as you write the text.
 So all you need to have your simple dynamic calculation report is just plain text so you can
-copy-past it where you need after all.
+copy-past it where you need after all. Please not that this app is at early stage and is under
+development. Poof of concept (POC) stage.
+
+AI free, human brain made software 😆.
 
 Requirements
 ------------
