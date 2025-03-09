@@ -22,7 +22,7 @@ So all you need to have your simple dynamic calculation report is just plain tex
 copy-past it where you need after all. Please not that this app is at early stage and is under
 development. Poof of concept (POC) stage.
 
-AI free, human brain made software 😆.
+AI free, human brain made software. 😆
 
 Requirements
 ------------
@@ -34,7 +34,7 @@ textCalc is based on Python 3 and few non-standard Python library:
 How to run it
 -------------
 
-After the Python and needed library was installed, just run textCalc.py file.
+After Python and needed library installed, just run textCalc.py file.
 
 There is also windows binaries available. Just download it and run exe file.
 Please find link to windows binaries download below.
@@ -59,7 +59,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with textCalc; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
 
 Contributions
 -------------
