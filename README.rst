@@ -8,20 +8,25 @@ textCalc - Simple plain test calculator
 Changelog
 ---------
 
-kipsiCalc 0.0.1 (POC stage)
+textCalc 0.0.1 (POC stage)
   - POC version
 
 Description
 -----------
 
-testCalc xxxxx
+In daily engineer's work you sometimes need create simply or a bit more advanced calculations
+and embed them in to master report (which is Word, PDF or other format file). testCalc allow to
+create plain text including mathematical expressions. Math expressions are automatically updated.
+You can force expressions update manually or switch into to dynamic update as you write the text.
+So all you need to have your simple dynamic calculation report is just plain text so you can
+copy-past it where you need after all.
 
 Requirements
 ------------
-kipsiCalc is based on Python 3 and few non-standard Python library:
+textCalc is based on Python 3 and few non-standard Python library:
 
   - PyQt5 (https://www.riverbankcomputing.com/software/pyqt) - user interface
-  - Unum (https://pypi.python.org/pypi/Unum) - it is what make unit calculation possible
+  - Unum (https://pypi.python.org/pypi/Unum) - it is what make unit calculation possible (future feature)
 
 How to run it
 -------------
@@ -36,20 +41,20 @@ https://github.com/lukaszlaba/textCalc/releases
 License
 -------
 
-Copyright (C) 2019-2020 Łukasz Laba <lukaszlaba@gmail.pl>
+Copyright (C) 2025 Łukasz Laba <lukaszlaba@gmail.pl>
 
-ksipsiCalc is free software; you can redistribute it and/or modify
+textCalc is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
 
-ksipsiCalc is distributed in the hope that it will be useful,
+textCalc is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with ksipsiCalc; if not, write to the Free Software
+along with textCalc; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
