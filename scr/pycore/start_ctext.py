@@ -5,7 +5,7 @@ ctext='''
 
             Welcome in textCalc!
 
-Here are some example calulations that show textCalc features.
+Here are some example calculations that show textCalc features.
 
 1 + 1 = 2
 1 + 1 = 2 ;Comment
@@ -25,5 +25,5 @@ ans = 13
 
 Enjoy!
 
-Copyright (C) 2025, Lukasz Laba
+Copyright (C) 2025, Łukasz Laba
 '''
