@@ -75,9 +75,8 @@ if __name__ == '__main__':
     #--------
     app.exec()
 
-'''
-Icon
-https://icon-icons.com/icon/math-plus-minus/158290
-command used to frozening with pyinstaller
-pyinstaller --noconsole --icon=app.ico C:\Users\Lenovo\Dropbox\PYAPPS_STRUCT\SOURCE_TEXTCALC\source\scr\textCalc.py
-'''
+
+#Icon
+#https://icon-icons.com/icon/math-plus-minus/158290
+#command used to frozening with pyinstaller
+#pyinstaller --noconsole --icon=app.ico C:\Users\Lenovo\Dropbox\PYAPPS_STRUCT\SOURCE_TEXTCALC\source\scr\textCalc.py
