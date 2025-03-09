@@ -13,7 +13,7 @@ class gui(QMainWindow):
         self.editor.zoomIn(5)
 
         self.toolbar = QToolBar('My main toolbar')
-        self.addToolBar(self.toolbar)
+        self.addToolBar(Qt.LeftToolBarArea, self.toolbar)
         self.toolbar.setIconSize(QSize(32,32))
 
         self.icon_dir = 'icons/'
@@ -24,21 +24,26 @@ class gui(QMainWindow):
         self.toolbar.addAction(self.calculate_action)
 
         self.autocalculate_action = QAction(QIcon('gui/icons/refresh_auto.png'), 'Auto calculate', self)
-        self.autocalculate_action.setStatusTip('It auto calulate test once chaged')
+        self.autocalculate_action.setStatusTip('When checked it auto calulate text once changed')
         self.autocalculate_action.setCheckable(True)
         self.toolbar.addAction(self.autocalculate_action)
+
+        self.debug_action = QAction(QIcon('gui/icons/debug.png'), 'Debug', self)
+        self.debug_action.setStatusTip('When checked it shows bug tracking status')
+        self.debug_action.setCheckable(True)
+        self.toolbar.addAction(self.debug_action)
 
         self.status_bar = self.statusBar()
 
         #--------------------------
-        self.setMinimumSize(500, 500)
-        self.setWindowIcon(QIcon('gui/icons/textcalc.png'))
+        self.setMinimumSize(700, 700)
+        self.setWindowIcon(QIcon('gui/icons/app.ico'))
 
     def editor_style_edit(self):
-        self.editor.setStyleSheet('''QPlainTextEdit {background-color: white; font-family: Courier New;}''')
+        self.editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: white; font-family: Courier New;}''')
 
     def editor_style_alert(self):
-        self.editor.setStyleSheet('''QPlainTextEdit {background-color: rgb(255, 240, 240); font-family: Courier New;}''')
+        self.editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: rgb(255, 240, 240); font-family: Courier New;}''')
 
     def editor_style_done(self):
-        self.editor.setStyleSheet('''QPlainTextEdit {background-color: rgb(240, 255, 240); font-family: Courier New;}''')
+        self.editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: rgb(240, 255, 240); font-family: Courier New;}''')

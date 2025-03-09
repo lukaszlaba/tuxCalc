@@ -1,0 +1,8 @@
+TODO:
+- float prescision
+- zoom in zoom out
+- si units
+- copy clipboaed
+- paste from clibboard
+
+DONE:

@@ -1,6 +1,8 @@
 textCalc - Simple plain test calculator
 ---------------------------------------
 
+`Download for Windows <https://github.com/lukaszlaba/textCalc/releases>`_
+
 .. image:: docs/interface.png
 
 Changelog
