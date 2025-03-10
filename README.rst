@@ -1,4 +1,4 @@
-textCalc - Simple plain test calculator
+textCalc - simple plain text calculator
 ---------------------------------------
 
 `Download for Windows <https://github.com/lukaszlaba/textCalc/releases>`_
