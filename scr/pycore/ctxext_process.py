@@ -7,6 +7,7 @@ re_equation = re.compile('([^:=]+)=([^;=:]*)')
 
 ok_sign = ' ✓'
 fail_sign = ' ✗ (!!!!!!)'
+float_precision = 2
 
 def format_form_to_python(form):
     form = form.replace('^','**')
@@ -42,6 +43,8 @@ def process(ctext):
             FORM = format_form_to_python(FORM)
             try:
                 RES = eval(FORM)
+                if type(RES) is float:
+                    RES = round(RES, float_precision)
                 line = re_equation.sub(r'\1= %s '%(RES), line)
                 ans = RES
                 line = line + ok_sign
@@ -61,7 +64,7 @@ Comment
 a := 1 ;asdsds
 b := 1
 a + 1 = ;sadsad
-a/5 = 0.4
+a/3 = 0.4
 ans =
 '''
     print(process(test_text)[0])

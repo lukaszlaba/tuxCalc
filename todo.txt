@@ -1,7 +1,10 @@
 TODO:
-- float precision option
-- zoom in zoom out
+
 - si units support based on Unim
 - clipboard features
+- no ; for comments
+- help content
 
 DONE:
+- float precision option
+- zoom in zoom out

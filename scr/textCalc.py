@@ -8,15 +8,18 @@
 #-----------------------------------------------------------------
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QInputDialog
 from PyQt5.QtGui import QIcon
 
 from gui.gui import gui as _gui
+from pycore import ctxext_process
 from pycore.ctxext_process import process, remove_debug_notyfications
+
+
 
 app_name = 'textCalc'
 
-version = '0.0.1'
+version = '0.0.2'
 
 class _gui(_gui):
     def __init__(self):
@@ -26,8 +29,11 @@ class _gui(_gui):
         #--------
         self.calculate_action.triggered.connect(calculate)
         self.autocalculate_action.triggered.connect(calculate)
-        self.editor.textChanged.connect(txt_changed_action)
         self.debug_action.triggered.connect(calculate)
+        self.float_precision_action.triggered.connect(set_float_precision)
+        #--------
+        self.editor.textChanged.connect(txt_changed_action)
+
 
 def calculate():
     # get cursor position to plece it back later
@@ -64,6 +70,16 @@ def txt_changed_action():
         #----------
         # turn on back text watching after all
         gui.editor.textChanged.connect(txt_changed_action)
+
+def set_float_precision():
+    #---asking for precision as int number
+    value = QInputDialog.getInt(    None,
+                                    'Float display precysion', 'Set the precison:',
+                                    value = ctxext_process.float_precision,
+                                    min = 1, max = 9, step = 1)[0]
+    ctxext_process.float_precision = value
+    calculate()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

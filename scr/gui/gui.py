@@ -33,6 +33,24 @@ class gui(QMainWindow):
         self.debug_action.setCheckable(True)
         self.toolbar.addAction(self.debug_action)
 
+        self.toolbar.addSeparator()
+
+        self.float_precision_action = QAction(QIcon('gui/icons/float.png'), 'Float display precision', self)
+        self.float_precision_action.setStatusTip('It allow to set float display precision ')
+        self.toolbar.addAction(self.float_precision_action)
+
+        self.toolbar.addSeparator()
+
+        self.zoon_in_action = QAction(QIcon('gui/icons/zoom_in.png'), 'Zoom in', self)
+        self.zoon_in_action.setStatusTip('Zoom in font in editor')
+        self.zoon_in_action.triggered.connect(self.editor.zoomIn)
+        self.toolbar.addAction(self.zoon_in_action)
+
+        self.zoon_out_action = QAction(QIcon('gui/icons/zoom_out.png'), 'Zoom out', self)
+        self.zoon_out_action.setStatusTip('Zoom out font in editor')
+        self.zoon_out_action.triggered.connect(self.editor.zoomOut)
+        self.toolbar.addAction(self.zoon_out_action)
+
         self.status_bar = self.statusBar()
 
         #--------------------------
