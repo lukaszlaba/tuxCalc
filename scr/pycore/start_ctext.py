@@ -7,8 +7,10 @@ ctext='''
 
 Here are some example calculations that show textCalc features.
 
-1 + 1 = 2
+u.m / 3 =
 1 + 1 = 2 ;Comment
+
+20*[cm] * 40*[m] * 30*u.MPa =
 
 a := 1+2
 a := 1+2 ;Comment

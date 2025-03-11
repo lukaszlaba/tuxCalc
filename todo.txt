@@ -4,6 +4,7 @@ TODO:
 - clipboard features
 - no ; for comments
 - help content
+- := shortcut
 
 DONE:
 - float precision option

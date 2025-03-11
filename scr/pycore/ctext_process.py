@@ -1,16 +1,32 @@
 import re
+import os
+import sys
+
+import units as u
 
 #has assigment
 re_assigment = re.compile('(\S+) *:=([^=;]+)')
 #has equation
 re_equation = re.compile('([^:=]+)=([^;=:]*)')
+#has units [unit]
+re_units = re.compile('\[(\w+)\]')
+
+
+
+print(re_units.sub(r'u.\1', '2*[m] - 10*[cm]'), '<<<<')
 
 ok_sign = ' ✓'
 fail_sign = ' ✗ (!!!!!!)'
-float_precision = 2
+float_precision = 3
+
+def set_float_precision(precission=3):
+    global float_precision
+    float_precision = precission
+    u.__Unum.VALUE_FORMAT =  f'%5.{precission}f'
 
 def format_form_to_python(form):
     form = form.replace('^','**')
+    form = re_units.sub(r'u.\1', form)
     return form
 
 def remove_debug_notyfications(ctext):
@@ -45,6 +61,7 @@ def process(ctext):
                 RES = eval(FORM)
                 if type(RES) is float:
                     RES = round(RES, float_precision)
+                RES = str(RES).replace(' ', '') #!!!!!!!!!!!!
                 line = re_equation.sub(r'\1= %s '%(RES), line)
                 ans = RES
                 line = line + ok_sign
@@ -61,9 +78,9 @@ if __name__ == '__main__':
     test_text='''
 Tests script
 Comment
-a := 1 ;asdsds
+a := 1*[m] = ;asdsds
 b := 1
-a + 1 = ;sadsad
+a + 1*u.m = ;sadsad
 a/3 = 0.4
 ans =
 '''

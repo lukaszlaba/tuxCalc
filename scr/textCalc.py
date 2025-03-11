@@ -12,14 +12,13 @@ from PyQt5.QtWidgets import QApplication, QInputDialog
 from PyQt5.QtGui import QIcon
 
 from gui.gui import gui as _gui
-from pycore import ctxext_process
-from pycore.ctxext_process import process, remove_debug_notyfications
-
-
+from pycore import ctext_process
+from pycore.ctext_process import process, remove_debug_notyfications
 
 app_name = 'textCalc'
-
 version = '0.0.2'
+
+
 
 class _gui(_gui):
     def __init__(self):
@@ -75,9 +74,9 @@ def set_float_precision():
     #---asking for precision as int number
     value = QInputDialog.getInt(    None,
                                     'Float display precysion', 'Set the precison:',
-                                    value = ctxext_process.float_precision,
+                                    value = ctext_process.float_precision,
                                     min = 1, max = 9, step = 1)[0]
-    ctxext_process.float_precision = value
+    ctext_process.set_float_precision(value)
     calculate()
 
 
@@ -85,9 +84,11 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     gui =_gui()
     gui.show()
+    ctext_process.set_float_precision(2)
     # welcom text
     from pycore.start_ctext import ctext
     gui.editor.setPlainText(ctext)
+    calculate()
     #--------
     app.exec()
 
