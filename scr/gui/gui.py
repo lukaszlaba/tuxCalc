@@ -2,15 +2,17 @@ from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QPlainTextEdit, QToolBar, QAction, QStatusBar
 
+from editor import CodeEditor
+
 
 class gui(QMainWindow):
     def __init__(self):
         super().__init__()
         #--------------------------
-        self.editor = QPlainTextEdit()
+        self.editor = CodeEditor()
         self.setCentralWidget(self.editor)
         self.editor_style_edit()
-        self.editor.zoomIn(5)
+        self.editor.zoomIn(2)
 
         self.toolbar = QToolBar('My main toolbar')
         self.addToolBar(Qt.LeftToolBarArea, self.toolbar)
@@ -18,7 +20,22 @@ class gui(QMainWindow):
 
         self.icon_dir = 'icons/'
 
-        self.calculate_action = QAction(QIcon('gui/icons/refresh.png'), 'Calculate', self)
+        self.open_action = QAction(QIcon('gui/icons/open.png'), 'Open', self)
+        self.open_action.triggered.connect(self.editor.open_file)
+        self.toolbar.addAction(self.open_action)
+
+        self.save_action = QAction(QIcon('gui/icons/save.png'), 'Save [Ctrl+S]', self)
+        self.save_action.triggered.connect(self.editor.save_file)
+        self.save_action.setShortcut('Ctrl+S')
+        self.toolbar.addAction(self.save_action)
+
+        self.saveas_action = QAction(QIcon('gui/icons/saveas.png'), 'Save_as', self)
+        self.saveas_action.triggered.connect(self.editor.save_file_as)
+        self.toolbar.addAction(self.saveas_action)
+
+        self.toolbar.addSeparator()
+
+        self.calculate_action = QAction(QIcon('gui/icons/refresh.png'), 'Calculate [Ctrl+E]', self)
         self.calculate_action.setStatusTip('It calculate text')
         self.calculate_action.setShortcut('Ctrl+E')
         self.toolbar.addAction(self.calculate_action)
@@ -57,6 +74,22 @@ class gui(QMainWindow):
         self.udot_action.setStatusTip('Update u.m into [m]')
         self.toolbar.addAction(self.udot_action)
 
+        self.greek_action = QAction(QIcon('gui/icons/greek.png'), 'Insert greek letter [Ctrl+G]', self)
+        self.greek_action.setStatusTip('It isert greek letter')
+        self.greek_action.triggered.connect(self.editor.insert_greek_letter)
+        self.greek_action.setShortcut('Ctrl+G')
+        self.toolbar.addAction(self.greek_action)
+
+        self.prime_action = QAction(QIcon('gui/icons/prime.png'), 'Insert prime sign', self)
+        self.prime_action.setStatusTip('It insert prime_action')
+        self.prime_action.triggered.connect(self.editor.insert_unicode_prime_character)
+        self.toolbar.addAction(self.prime_action)
+
+        self.asign_action = QAction(QIcon('gui/icons/asign.png'), 'Insert asign := sign [Ctrl+;]', self)
+        self.asign_action.setStatusTip('It insert asign sign')
+        self.asign_action.triggered.connect(self.editor.insert_asign_sign)
+        self.asign_action.setShortcut('Ctrl+;')
+        self.toolbar.addAction(self.asign_action)
 
         self.status_bar = self.statusBar()
 

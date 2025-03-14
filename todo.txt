@@ -1,13 +1,20 @@
 TODO:
-
-
+- save open file
 - clipboard features
+- sections
 - no ; for comments
 - help content
-- := shortcut
-- undo
+
+
+
+
+INPROGRESS:
+
 
 DONE:
+- := shortcut
+- geek laters
+- undo
 - si units support based on Unim
 - float precision option
 - zoom in zoom out

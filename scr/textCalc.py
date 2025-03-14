@@ -18,7 +18,6 @@ from pycore.ctext_process import process, remove_debug_notyfications, format_udo
 app_name = 'textCalc'
 version = '0.0.2'
 
-
 class _gui(_gui):
     def __init__(self):
         super().__init__()
