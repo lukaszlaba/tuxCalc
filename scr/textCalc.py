@@ -76,7 +76,7 @@ def set_float_precision_action():
                                     value = ctext_process.float_precision,
                                     min = 1, max = 9, step = 1)[0]
     ctext_process.set_float_precision(value)
-    calculate()
+    calculate_action()
 
 def format_udot_action():
     txt = gui.editor.toPlainText()
