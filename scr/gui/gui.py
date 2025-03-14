@@ -51,6 +51,13 @@ class gui(QMainWindow):
         self.zoon_out_action.triggered.connect(self.editor.zoomOut)
         self.toolbar.addAction(self.zoon_out_action)
 
+        self.toolbar.addSeparator()
+
+        self.udot_action = QAction(QIcon('gui/icons/udot.png'), 'Format udot', self)
+        self.udot_action.setStatusTip('Update u.m into [m]')
+        self.toolbar.addAction(self.udot_action)
+
+
         self.status_bar = self.statusBar()
 
         #--------------------------

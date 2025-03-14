@@ -13,11 +13,10 @@ from PyQt5.QtGui import QIcon
 
 from gui.gui import gui as _gui
 from pycore import ctext_process
-from pycore.ctext_process import process, remove_debug_notyfications
+from pycore.ctext_process import process, remove_debug_notyfications, format_udot
 
 app_name = 'textCalc'
 version = '0.0.2'
-
 
 
 class _gui(_gui):
@@ -26,15 +25,15 @@ class _gui(_gui):
         #--------
         self.setWindowTitle(f'{app_name} {version}')
         #--------
-        self.calculate_action.triggered.connect(calculate)
-        self.autocalculate_action.triggered.connect(calculate)
-        self.debug_action.triggered.connect(calculate)
-        self.float_precision_action.triggered.connect(set_float_precision)
+        self.calculate_action.triggered.connect(calculate_action)
+        self.autocalculate_action.triggered.connect(calculate_action)
+        self.debug_action.triggered.connect(calculate_action)
+        self.float_precision_action.triggered.connect(set_float_precision_action)
+        self.udot_action.triggered.connect(format_udot_action)
         #--------
         self.editor.textChanged.connect(txt_changed_action)
 
-
-def calculate():
+def calculate_action():
     # get cursor position to plece it back later
     pos = gui.editor.textCursor().position()
     #----
@@ -65,12 +64,12 @@ def txt_changed_action():
         # turn off text watching for now
         gui.editor.textChanged.disconnect()
         #----------
-        calculate()
+        calculate_action()
         #----------
         # turn on back text watching after all
         gui.editor.textChanged.connect(txt_changed_action)
 
-def set_float_precision():
+def set_float_precision_action():
     #---asking for precision as int number
     value = QInputDialog.getInt(    None,
                                     'Float display precysion', 'Set the precison:',
@@ -78,6 +77,13 @@ def set_float_precision():
                                     min = 1, max = 9, step = 1)[0]
     ctext_process.set_float_precision(value)
     calculate()
+
+def format_udot_action():
+    txt = gui.editor.toPlainText()
+    txt = format_udot(txt)
+    gui.editor.setPlainText(txt)
+    calculate_action()
+
 
 
 if __name__ == '__main__':
@@ -88,7 +94,7 @@ if __name__ == '__main__':
     # welcom text
     from pycore.start_ctext import ctext
     gui.editor.setPlainText(ctext)
-    calculate()
+    calculate_action()
     #--------
     app.exec()
 

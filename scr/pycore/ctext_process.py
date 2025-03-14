@@ -11,12 +11,15 @@ re_equation = re.compile('([^:=]+)=([^;=:]*)')
 #has units [unit]
 re_units = re.compile('\[(\w+)\]')
 
+#has units [unit]
+re_units_udot = re.compile('u\.(\w+)')
 
 
-print(re_units.sub(r'u.\1', '2*[m] - 10*[cm]'), '<<<<')
+
+#print(re_units.sub(r'u.\1', '2*[m] - 10*[cm]'), '<<<<')
 
 ok_sign = ' ✓'
-fail_sign = ' ✗ (!!!!!!)'
+fail_sign = ' ✗(!!!!!!)'
 float_precision = 3
 
 def set_float_precision(precission=3):
@@ -27,6 +30,10 @@ def set_float_precision(precission=3):
 def format_form_to_python(form):
     form = form.replace('^','**')
     form = re_units.sub(r'u.\1', form)
+    return form
+
+def format_udot(form):
+    form = re_units_udot.sub(r'[\1]', form)
     return form
 
 def remove_debug_notyfications(ctext):
@@ -54,16 +61,33 @@ def process(ctext):
                 line = line + fail_sign
                 has_no_bugs = False
         if re_equation.findall(line):
+            line = remove_debug_notyfications(line) #if added above
             data = re_equation.findall(line)[0]
             FORM = data[0]
             FORM = format_form_to_python(FORM)
+            RES = data[1]
+            RES = str(RES).replace(' ', '')
             try:
-                RES = eval(FORM)
-                if type(RES) is float:
-                    RES = round(RES, float_precision)
-                RES = str(RES).replace(' ', '') #!!!!!!!!!!!!
-                line = re_equation.sub(r'\1= %s '%(RES), line)
-                ans = RES
+                new_RES = eval(FORM)
+                ans = new_RES
+                #--------------------------
+                if type(new_RES) is float:
+                    new_RES = round(new_RES, float_precision)
+                #---------------------------
+                if type(new_RES) is type(u.m) and re_units.search(RES):
+                    try:
+                        RES = format_form_to_python(RES)
+                        RES = eval(RES)
+                        RES_unit = RES/RES.asNumber()
+                        new_RES = new_RES.asUnit(RES_unit)
+                    except:
+                        line = line + fail_sign
+                        has_no_bugs = False
+                        out_script += line + '\n'
+                        continue
+                #----------------------------
+                new_RES = str(new_RES).replace(' ', '')
+                line = re_equation.sub(r'\1= %s '%(new_RES), line)
                 line = line + ok_sign
             except:
                 line = line + fail_sign
@@ -71,17 +95,14 @@ def process(ctext):
         out_script += line + '\n'
     #there is one \n to much at the end so remove it
     out_script = out_script[:-1]
+
     return out_script, has_no_bugs
 
 #test if main
 if __name__ == '__main__':
     test_text='''
 Tests script
-Comment
-a := 1*[m] = ;asdsds
-b := 1
-a + 1*u.m = ;sadsad
-a/3 = 0.4
-ans =
+a := u.m / 2 = 0.33*[m]
+
 '''
     print(process(test_text)[0])

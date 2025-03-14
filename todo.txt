@@ -1,11 +1,13 @@
 TODO:
 
-- si units support based on Unim
+
 - clipboard features
 - no ; for comments
 - help content
 - := shortcut
+- undo
 
 DONE:
+- si units support based on Unim
 - float precision option
 - zoom in zoom out
