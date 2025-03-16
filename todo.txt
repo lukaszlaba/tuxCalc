@@ -1,17 +1,15 @@
 TODO:
-- save open file
 - clipboard features
+- math functions
 - sections
 - no ; for comments
 - help content
-
-
-
 
 INPROGRESS:
 
 
 DONE:
+- save open file
 - := shortcut
 - geek laters
 - undo

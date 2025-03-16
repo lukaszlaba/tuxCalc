@@ -21,16 +21,13 @@ class gui(QMainWindow):
         self.icon_dir = 'icons/'
 
         self.open_action = QAction(QIcon('gui/icons/open.png'), 'Open', self)
-        self.open_action.triggered.connect(self.editor.open_file)
         self.toolbar.addAction(self.open_action)
 
         self.save_action = QAction(QIcon('gui/icons/save.png'), 'Save [Ctrl+S]', self)
-        self.save_action.triggered.connect(self.editor.save_file)
         self.save_action.setShortcut('Ctrl+S')
         self.toolbar.addAction(self.save_action)
 
         self.saveas_action = QAction(QIcon('gui/icons/saveas.png'), 'Save_as', self)
-        self.saveas_action.triggered.connect(self.editor.save_file_as)
         self.toolbar.addAction(self.saveas_action)
 
         self.toolbar.addSeparator()
@@ -90,6 +87,11 @@ class gui(QMainWindow):
         self.asign_action.triggered.connect(self.editor.insert_asign_sign)
         self.asign_action.setShortcut('Ctrl+;')
         self.toolbar.addAction(self.asign_action)
+
+        self.toolbar.addSeparator()
+
+        self.print_action = QAction(QIcon('gui/icons/print.png'), 'Print', self)
+        self.toolbar.addAction(self.print_action)
 
         self.status_bar = self.statusBar()
 

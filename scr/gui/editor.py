@@ -1,3 +1,5 @@
+import os
+
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
@@ -9,8 +11,9 @@ class CodeEditor(QPlainTextEdit):
         super().__init__()
         self.cursorPositionChanged.connect(self.highlightCurrentLine)
         self.setTabStopWidth(self.fontMetrics().width(' ') * 4)
-        self.zoomIn(2)   
- 
+        self.zoomIn(2)
+
+
     def highlightCurrentLine(self):
         extraSelections = []
         if not self.isReadOnly():
@@ -22,7 +25,7 @@ class CodeEditor(QPlainTextEdit):
             selection.cursor.clearSelection()
             extraSelections.append(selection)
         self.setExtraSelections(extraSelections)
-    
+
     def insert_greek_letter(self):
         #what is the letter before cursor
         cursor_possition = self.textCursor().position()
@@ -38,15 +41,9 @@ class CodeEditor(QPlainTextEdit):
 
     def insert_unicode_prime_character(self):
         self.insertPlainText("ʹ") # this is U+02B9 unicode prime character that can be used for variable name
-        
+
     def insert_asign_sign(self):
         self.insertPlainText(":=")
-        
-    def open_file(self):
-        print('open')
 
-    def save_file(self):
-        print('save')
 
-    def save_file_as(self):
-        print('save as')
+

@@ -8,6 +8,10 @@ textCalc - simple plain text calculator
 Changelog
 ---------
 
+textCalc 0.0.2 (beta stage)
+  - new fratures added
+  - beta version
+
 textCalc 0.0.1 (POC stage)
   - POC version
 
