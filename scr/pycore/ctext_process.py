@@ -3,20 +3,20 @@ import os
 import sys
 
 import units as u
+from constants import *
+from functions import *
 
 #has assigment
 re_assigment = re.compile('(\S+) *:=([^=;]+)')
+
 #has equation
 re_equation = re.compile('([^:=]+)=([^;=:]*)')
+
 #has units [unit]
 re_units = re.compile('\[(\w+)\]')
 
 #has units [unit]
 re_units_udot = re.compile('u\.(\w+)')
-
-
-
-#print(re_units.sub(r'u.\1', '2*[m] - 10*[cm]'), '<<<<')
 
 ok_sign = ' ✓'
 fail_sign = ' ✗(!!!!!!)'
@@ -40,6 +40,13 @@ def remove_debug_notyfications(ctext):
     ctext = ctext.replace(ok_sign,'')
     ctext = ctext.replace(fail_sign,'')
     return ctext
+
+def get_unum_unit(umum_value=5*u.m):
+    unit = umum_value.strUnit()
+    unit = unit.replace('*','')
+    unit = format_form_to_python(unit)
+    unit = eval(unit)
+    return unit
 
 def process(ctext):
     ctext = remove_debug_notyfications(ctext)
@@ -77,10 +84,16 @@ def process(ctext):
                 if type(new_RES) is type(u.m) and re_units.search(RES):
                     try:
                         RES = format_form_to_python(RES)
+                        print(RES, 1)
                         RES = eval(RES)
-                        RES_unit = RES/RES.asNumber()
+                        print(RES, 2)
+                        #RES_unit = RES/RES.asNumber()
+                        RES_unit = get_unum_unit(RES)
+                        print(format_form_to_python(RES_unit.strUnit().replace('*', '')), 3)
                         new_RES = new_RES.asUnit(RES_unit)
-                    except:
+                        print(new_RES, 4)
+                    except Exception as e:
+                        print(e)
                         line = line + fail_sign
                         has_no_bugs = False
                         out_script += line + '\n'

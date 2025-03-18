@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
 
 from unum import Unum as __Unum
+import math
 
 # Unum customization
 __Unum.UNIT_SEP = '*'
@@ -117,3 +118,8 @@ kcf = __Unum.unit('kcf', kip / ft3)             # [kcf] unit definition
 #---------------------------------------------------------------------
 
 gn = 9.80665 * m / s**2
+
+
+#----------------------------added for testcalc -----------------------
+radian  = __Unum.unit('radian', 1)                 # [radian] unit definition
+degree  = __Unum.unit('degree', 2*math.pi/360)     # [degree] unit definition

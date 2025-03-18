@@ -1,14 +1,18 @@
 TODO:
 - clipboard features
-- math functions
 - sections
 - no ; for comments
+- possible 5[m]
 - help content
+
 
 INPROGRESS:
 
 
+
 DONE:
+- math functions
+- deg
 - save open file
 - := shortcut
 - geek laters
