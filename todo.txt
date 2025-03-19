@@ -1,6 +1,7 @@
 TODO:
+- keep scroll scroll potition
 - clipboard features
-- sections
+- report sections
 - no ; for comments
 - possible 5[m]
 - help content
