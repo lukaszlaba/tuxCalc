@@ -2,8 +2,8 @@
 #-----------------------------------------------------------------
 # Copyright (C) 2025, Lukasz Laba
 #
-# This file is part of calcText
-# calcText is distributed under the terms of GNU General Public License
+# This file is part of tuxCalc
+# tuxCalc is distributed under the terms of GNU General Public License
 # The full license can be found in 'license.txt'
 #-----------------------------------------------------------------
 import sys

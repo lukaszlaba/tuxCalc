@@ -96,7 +96,7 @@ class gui(QMainWindow):
         self.status_bar = self.statusBar()
 
         #--------------------------
-        self.setMinimumSize(700, 700)
+        self.setMinimumSize(750, 700)
         self.setWindowIcon(QIcon('gui/icons/app.ico'))
 
     def editor_style_edit(self):
