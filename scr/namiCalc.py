@@ -20,7 +20,7 @@ from gui.gui import gui as _gui
 from pycore import ctext_process
 from pycore.ctext_process import process, remove_debug_notyfications, format_udot
 
-APPNAME = 'textCalc'
+APPNAME = 'namiCalc'
 VERSION = '0.0.2'
 FILEPATH = ''
 SAVEDIR = ''
