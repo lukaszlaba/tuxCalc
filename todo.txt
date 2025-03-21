@@ -1,10 +1,16 @@
 TODO:
 - keep scroll scroll potition
 - clipboard features
+- undo
 - report sections
 - no ; for comments
 - possible 5[m]
 - help content
+- info
+- wiki
+- english language speling correction
+
+tuxCalc
 
 
 INPROGRESS:

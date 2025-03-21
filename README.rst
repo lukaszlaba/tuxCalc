@@ -8,6 +8,10 @@ textCalc - simple plain text calculator
 Changelog
 ---------
 
+tuxCalc 0.0.3 wip (beta stage)
+  - name changed
+  - beta version
+
 textCalc 0.0.2 (beta stage)
   - new fratures added
   - beta version
