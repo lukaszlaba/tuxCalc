@@ -23,6 +23,11 @@ Maksimum stress in section
 σ_max = 0.07*[ksi]
 --------------------------------------------------
 
+tuxCalc is distributed under the terms of GNU General Public License
+The full license can be found in 'license.txt'
+
+Project website: https://github.com/lukaszlaba/tuxCalc
+
 Enjoy!
 
 Copyright (C) 2025, Łukasz Laba

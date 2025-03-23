@@ -1,5 +1,4 @@
 TODO:
-- keep scroll scroll potition
 - clipboard features
 - undo
 - report sections
@@ -9,8 +8,7 @@ TODO:
 - info
 - wiki
 - english language speling correction
-
-tuxCalc
+- sectionbase
 
 
 INPROGRESS:
@@ -18,6 +16,7 @@ INPROGRESS:
 
 
 DONE:
+- keep scroll scroll potition
 - math functions
 - deg
 - save open file

@@ -21,7 +21,7 @@ from pycore import ctext_process
 from pycore.ctext_process import process, remove_debug_notyfications, format_udot
 
 APPNAME = 'tuxCalc'
-VERSION = '0.0.2'
+VERSION = '0.1.1'
 FILEPATH = ''
 SAVEDIR = ''
 
@@ -52,9 +52,6 @@ class _gui(_gui):
         self.setWindowTitle(title)
 
 def calculate():
-    # get cursor position to plece it back later
-    pos = gui.editor.textCursor().position()
-    #----
     txt = gui.editor.toPlainText()
     #---
     out = process(txt)
@@ -63,19 +60,16 @@ def calculate():
         out_txt = remove_debug_notyfications(out_txt)
     has_no_bugs = out[1]
     #---
-    gui.editor.setPlainText(out_txt)
+    gui.editor.update_text(out_txt)
+    #---
     gui.editor_style_done()
     gui.status_bar.showMessage('Calculated with no bugs')
     if not has_no_bugs:
         gui.editor_style_alert()
         gui.status_bar.showMessage('Calculated with bugs ( !!! )')
-    # place cursor back after all so user can easly continue editing the text
-    cursor = gui.editor.textCursor()
-    cursor.setPosition(pos)
-    gui.editor.setTextCursor(cursor)
 
 def txt_changed_action():
-    # change backgroud color in to white as text changed
+    # change backgroud color in to edit style
     gui.editor_style_edit()
     # if autocalculate checked recalulate
     if gui.autocalculate_action.isChecked():
@@ -177,4 +171,4 @@ if __name__ == '__main__':
 #Icon
 #https://icon-icons.com/icon/math-plus-minus/158290
 #command used to frozening with pyinstaller
-#pyinstaller --noconsole --icon=app.ico C:\Users\Lenovo\Dropbox\PYAPPS_STRUCT\SOURCE_TEXTCALC\source\scr\textCalc.py
+#pyinstaller --noconsole --icon=app.ico C:\Users\Lenovo\Dropbox\PYAPPS_STRUCT\SOURCE_TUXCALC\source\scr\tuxCalc.py

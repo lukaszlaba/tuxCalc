@@ -39,6 +39,22 @@ class CodeEditor(QPlainTextEdit):
         else:
             pass
 
+    def update_text(self, text):
+        # get cursor position to place it back later
+        pos = self.textCursor().position()
+        # get scrol position to place it back later
+        vsb = self.verticalScrollBar()
+        old_pos_ratio = vsb.value() / (vsb.maximum() or 1)
+        #--------------updateing text-------------------
+        self.setPlainText(text)
+        # place cursor back after all so user can easly continue editing the text
+        cursor = self.textCursor()
+        cursor.setPosition(pos)
+        self.setTextCursor(cursor)
+        # place scrolback after all so user can easly continue editing the text
+        vsb.setValue(round(old_pos_ratio * vsb.maximum()))
+
+
     def insert_unicode_prime_character(self):
         self.insertPlainText("ʹ") # this is U+02B9 unicode prime character that can be used for variable name
 

@@ -8,13 +8,14 @@ tuxCalc - simple plain text calculator
 Changelog
 ---------
 
-tuxCalc 0.0.3 wip (beta stage)
+tuxCalc 0.1.1 (beta stage)
   - name changed
   - beta version
+  - ui updates
 
 tuxCalc 0.0.2 (beta stage)
   - new fratures added
-  - beta version
+  - alpha version
 
 textCalc 0.0.1 (POC stage)
   - POC version
@@ -75,7 +76,7 @@ If you want to help out, create a pull request. You can also contact by email.
 More information
 ----------------
 
-Project website: https://github.com/lukaszlaba/kipsiCalc
+Project website: https://github.com/lukaszlaba/tuxCalc
 
 Code repository: https://github.com/lukaszlaba/tuxCalc
 
