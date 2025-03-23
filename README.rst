@@ -13,7 +13,7 @@ tuxCalc 0.1.1 (beta stage)
   - beta version
   - ui updates
 
-tuxCalc 0.0.2 (beta stage)
+textCalc 0.0.2 (beta stage)
   - new fratures added
   - alpha version
 
