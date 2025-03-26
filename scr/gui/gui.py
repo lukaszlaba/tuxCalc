@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QPlainTextEdit, QToolBar, QAction, QStatusBar
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QPlainTextEdit, QToolBar, QAction, QStatusBar, QSplitter
 
 from editor import CodeEditor
 
@@ -9,10 +9,22 @@ class gui(QMainWindow):
     def __init__(self):
         super().__init__()
         #--------------------------
+        self.help_editor = CodeEditor()
+        self.help_editor.setReadOnly(True)
+        self.help_efitor_style()
+
         self.editor = CodeEditor()
-        self.setCentralWidget(self.editor)
+
+        self.splitter = QSplitter(Qt.Horizontal)
+        self.setCentralWidget(self.splitter)
+
+        self.splitter.addWidget(self.editor)
+        self.splitter.addWidget(self.help_editor)
+        self.help_editor.hide()
+
         self.editor_style_edit()
         self.editor.zoomIn(2)
+        self.help_editor.zoomIn(2)
 
         self.toolbar = QToolBar('My main toolbar')
         self.addToolBar(Qt.LeftToolBarArea, self.toolbar)
@@ -90,6 +102,32 @@ class gui(QMainWindow):
 
         self.toolbar.addSeparator()
 
+        self.clbrd_paste_in_action = QAction(QIcon('gui/icons/clbrd_paste_in.png'), 'Paste in from clbrd', self)
+        self.clbrd_paste_in_action.setStatusTip('Replace text by clipborard content')
+        self.toolbar.addAction(self.clbrd_paste_in_action)
+
+        self.clbrd_copy_out_action = QAction(QIcon('gui/icons/clbrd_copy_out.png'), 'Copy out to clbrd', self)
+        self.clbrd_copy_out_action.setStatusTip('Copy entire text to clipboard')
+        self.toolbar.addAction(self.clbrd_copy_out_action)
+
+        self.clbrd_reload_action = QAction(QIcon('gui/icons/clbrd_reload.png'), 'Reload clbrd', self)
+        self.clbrd_reload_action.setStatusTip('It paste in, calulate and then copy out to clipboard')
+        self.toolbar.addAction(self.clbrd_reload_action)
+
+        self.toolbar.addSeparator()
+
+        self.help_action = QAction(QIcon('gui/icons/help.png'), 'Help', self)
+        self.help_action.setCheckable(True)
+        self.help_action.triggered.connect(self.show_help)
+        self.toolbar.addAction(self.help_action)
+
+        self.about_action = QAction(QIcon('gui/icons/about.png'), 'About', self)
+        self.about_action.setCheckable(True)
+        self.about_action.triggered.connect(self.show_about)
+        self.toolbar.addAction(self.about_action)
+
+        self.toolbar.addSeparator()
+
         self.print_action = QAction(QIcon('gui/icons/print.png'), 'Print', self)
         self.toolbar.addAction(self.print_action)
 
@@ -107,3 +145,39 @@ class gui(QMainWindow):
 
     def editor_style_done(self):
         self.editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: rgb(240, 255, 240); font-family: Courier New;}''')
+
+    def help_efitor_style(self):
+        self.help_editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: white; font-family: Courier New;}''')
+
+    def show_help(self):
+        self.about_action.setChecked(False)
+        if self.help_action.isChecked():
+            self.help_editor.show()
+            self.help_editor.setPlainText('Help ..')
+        else:
+            self.help_editor.hide()
+
+    def show_about(self):
+        self.help_action.setChecked(False)
+        if self.about_action.isChecked():
+            self.help_editor.show()
+            self.help_editor.setPlainText('About ...')
+        else:
+            self.help_editor.hide()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

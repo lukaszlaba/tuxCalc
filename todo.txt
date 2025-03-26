@@ -1,5 +1,4 @@
 TODO:
-- clipboard features
 - undo
 - report sections
 - no ; for comments
@@ -16,6 +15,7 @@ INPROGRESS:
 
 
 DONE:
+- clipboard features
 - keep scroll scroll potition
 - math functions
 - deg

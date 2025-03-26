@@ -15,6 +15,7 @@ import codecs
 from PyQt5.QtWidgets import QApplication, QInputDialog, QFileDialog, QDialog
 from PyQt5.QtGui import QIcon
 from PyQt5.QtPrintSupport import QPrintDialog
+from PyQt5.QtGui import QClipboard
 
 from gui.gui import gui as _gui
 from pycore import ctext_process
@@ -40,6 +41,9 @@ class _gui(_gui):
         self.float_precision_action.triggered.connect(set_float_precision)
         self.udot_action.triggered.connect(replace_udot)
         self.print_action.triggered.connect(print_file)
+        self.clbrd_paste_in_action.triggered.connect(paste_in_from_clipboard)
+        self.clbrd_copy_out_action.triggered.connect(copy_out_to_clipboard)
+        self.clbrd_reload_action.triggered.connect(update_clipboard)
 
         #--------
         self.editor.textChanged.connect(txt_changed_action)
@@ -154,6 +158,32 @@ def print_file():
     dialog = QPrintDialog(gui)
     if dialog.exec_() == QDialog.Accepted:
         gui.editor.document().print_(dialog.printer())
+
+def copy_out_to_clipboard():
+    text = gui.editor.toPlainText()
+    cb = QApplication.clipboard()
+    cb.setText(text)
+    gui.status_bar.showMessage('text in clipboard')
+
+def paste_in_from_clipboard():
+    cb = QApplication.clipboard()
+    text = cb.text()
+    if text:
+        gui.editor.setPlainText(text)
+        gui.status_bar.showMessage('text pasted')
+        return True
+    else:
+        gui.status_bar.showMessage('no text in clipboard')
+        return False
+
+
+def update_clipboard():
+    if paste_in_from_clipboard():
+        calculate()
+        copy_out_to_clipboard()
+        gui.status_bar.showMessage('recalulated text in clipboard')
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

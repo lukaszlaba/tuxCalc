@@ -13,7 +13,6 @@ class CodeEditor(QPlainTextEdit):
         self.setTabStopWidth(self.fontMetrics().width(' ') * 4)
         self.zoomIn(2)
 
-
     def highlightCurrentLine(self):
         extraSelections = []
         if not self.isReadOnly():
