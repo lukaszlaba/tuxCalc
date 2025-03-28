@@ -11,15 +11,35 @@ from  greek_dict import greek_dict
 class CodeEditor(QPlainTextEdit):
     def __init__(self, parent = None):
         super().__init__()
-
+        #----to overwrite defaul undo
         self.installEventFilter(self)
-
+        #----
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.show_custom_menu)
-
+        #----
         self.cursorPositionChanged.connect(self.highlightCurrentLine)
         self.setTabStopWidth(self.fontMetrics().width(' ') * 4)
         self.zoomIn(2)
+        #--- undo stack
+        self.h_stack = []
+        self.h_stack_lock = False
+        self.h_current_index = None
+
+    def clear_history(self):
+        self.h_stack = []
+        self.h_stack_lock = False
+        self.h_current_index = None
+
+    def add_to_history_stack(self):
+        if not self.h_stack_lock:
+            if self.h_stack:
+                del self.h_stack[0: self.h_current_index]
+            text = self.toPlainText()
+            pos = self.textCursor().position()
+            self.h_stack.insert(0, [text, pos])
+            self.h_current_index = 0
+            if len(self.h_stack) == 200:
+                self.h_stack.pop()
 
     def highlightCurrentLine(self):
         extraSelections = []
@@ -43,8 +63,6 @@ class CodeEditor(QPlainTextEdit):
             #replace letter before cursor by the assigned greek letter
             self.textCursor().deletePreviousChar()
             self.insertPlainText(greek_letter)
-        else:
-            pass
 
     def update_text(self, text):
         # get cursor position to place it back later
@@ -61,14 +79,11 @@ class CodeEditor(QPlainTextEdit):
         # place scrolback after all so user can easly continue editing the text
         vsb.setValue(round(old_pos_ratio * vsb.maximum()))
 
-
     def insert_unicode_prime_character(self):
         self.insertPlainText("ʹ") # this is U+02B9 unicode prime character that can be used for variable name
 
     def insert_asign_sign(self):
         self.insertPlainText(":=")
-
-
 
     def show_custom_menu(self, position):
         # Create a custom context menu
@@ -86,13 +101,23 @@ class CodeEditor(QPlainTextEdit):
     def eventFilter(self, obj, event):
         if obj == self and event.type() == QEvent.KeyPress:
             if event.key() == Qt.Key_Z and event.modifiers() == Qt.ControlModifier:
-                print("Custom undo triggered")
-                # Perform custom undo logic here
-                return True
+                #custom undo logic
+                if 0 <= self.h_current_index+1 < len(self.h_stack)-1:
+                    self.h_current_index += 1
+                    self.h_stack_lock = True
+                    self.setPlainText(self.h_stack[self.h_current_index][0])
+                    self.h_stack_lock = False
+                    cursor = self.textCursor()
+                    cursor.setPosition(self.h_stack[self.h_current_index][1])
+                    self.setTextCursor(cursor)
             elif event.key() == Qt.Key_Y and event.modifiers() == Qt.ControlModifier:
-                print("Custom redo triggered")
-                # Perform custom redo logic here
-                return True
+                #custom redo logic
+                if 0 <= self.h_current_index-1 < len(self.h_stack)-1:
+                    self.h_current_index -= 1
+                    self.h_stack_lock = True
+                    self.setPlainText(self.h_stack[self.h_current_index][0])
+                    self.h_stack_lock = False
+                    cursor = self.textCursor()
+                    cursor.setPosition(self.h_stack[self.h_current_index][1])
+                    self.setTextCursor(cursor)
         return super().eventFilter(obj, event)
-
-

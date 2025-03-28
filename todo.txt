@@ -1,17 +1,16 @@
 TODO:
-- undo
-- report sections
+- sectionbase
 - possible 5[m]
-- wiki
 - english language speling correction
+- report sections
 - sectionbase
 
 
 INPROGRESS:
 
 
-
 DONE:
+- undo
 - help content
 - info
 - clipboard features

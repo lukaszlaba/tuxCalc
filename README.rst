@@ -7,6 +7,11 @@ tuxCalc - simple plain text calculator
 
 Changelog
 ---------
+tuxCalc 0.1.2 wip (beta stage)
+  - undo
+  - help and info pages added
+  - clipboard features
+  - ..
 
 tuxCalc 0.1.1 (beta stage)
   - name changed

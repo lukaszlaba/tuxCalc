@@ -22,7 +22,7 @@ from pycore import ctext_process
 from pycore.ctext_process import process, remove_debug_notyfications, format_udot
 
 APPNAME = 'tuxCalc'
-VERSION = '0.1.1'
+VERSION = '0.1.2 wip'
 FILEPATH = ''
 SAVEDIR = ''
 
@@ -75,6 +75,7 @@ def calculate():
 def txt_changed_action():
     # change backgroud color in to edit style
     gui.editor_style_edit()
+    gui.editor.add_to_history_stack()
     # if autocalculate checked recalulate
     if gui.autocalculate_action.isChecked():
         # turn off text watching for now
@@ -117,6 +118,7 @@ def open_file(self):
         gui.editor.setPlainText(text)
         gui.updateWindowTitle()
         gui.status_bar.showMessage(f'opened {FILEPATH}')
+        gui.editor.clear_history()
     except:
         gui.status_bar.showMessage('opening not successful')
 
