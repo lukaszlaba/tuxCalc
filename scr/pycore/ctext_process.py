@@ -84,16 +84,10 @@ def process(ctext):
                 if type(new_RES) is type(u.m) and re_units.search(RES):
                     try:
                         RES = format_form_to_python(RES)
-                        print(RES, 1)
                         RES = eval(RES)
-                        print(RES, 2)
-                        #RES_unit = RES/RES.asNumber()
                         RES_unit = get_unum_unit(RES)
-                        print(format_form_to_python(RES_unit.strUnit().replace('*', '')), 3)
                         new_RES = new_RES.asUnit(RES_unit)
-                        print(new_RES, 4)
                     except Exception as e:
-                        print(e)
                         line = line + fail_sign
                         has_no_bugs = False
                         out_script += line + '\n'

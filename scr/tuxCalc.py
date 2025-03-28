@@ -105,7 +105,7 @@ def open_file(self):
     global SAVEDIR
     filename = QFileDialog.getOpenFileName(caption = 'Open text file',
                                             directory = SAVEDIR,
-                                            filter = "Text file (*.txt)")
+                                            filter = "Text file (*.txt);;All (*.*)")
     filename = str(filename[0])
     #---
     try:
@@ -183,16 +183,13 @@ def update_clipboard():
         copy_out_to_clipboard()
         gui.status_bar.showMessage('recalulated text in clipboard')
 
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     gui =_gui()
     gui.show()
     ctext_process.set_float_precision(2)
     # welcome text
-    from pycore.start_ctext import ctext
-    gui.editor.setPlainText(ctext)
+    gui.show_welcom_text()
     calculate()
     #--------
     app.exec()

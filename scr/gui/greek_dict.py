@@ -85,3 +85,7 @@ greek_dict =    {
                 'z':'ζ',
                 'Z':'Z'
                 }
+
+if __name__ == '__main__':
+    for i in greek_dict:
+        print(greek_dict[i], '-', i, end=', ')

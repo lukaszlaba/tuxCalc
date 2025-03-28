@@ -30,14 +30,12 @@ You can force expressions update manually or switch into dynamic update as you w
 So all you need to have your simple dynamic calculation content is just plain text so you can
 copy-paste it where you need after all. Please note that this app is at early stage.
 
-AI free, human brain made software. 😆
-
 Requirements
 ------------
 tuxCalc is based on Python 3 and few non-standard Python library:
 
   - PyQt5 (https://www.riverbankcomputing.com/software/pyqt) - user interface
-  - Unum (https://pypi.python.org/pypi/Unum) - it is what make unit calculation possible (future feature)
+  - Unum (https://pypi.python.org/pypi/Unum) - it is what make unit calculation possible
 
 How to run it
 -------------

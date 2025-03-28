@@ -4,11 +4,19 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
+from PyQt5.QtGui import QTextCursor
+
 from  greek_dict import greek_dict
 
 class CodeEditor(QPlainTextEdit):
     def __init__(self, parent = None):
         super().__init__()
+
+        self.installEventFilter(self)
+
+        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.show_custom_menu)
+
         self.cursorPositionChanged.connect(self.highlightCurrentLine)
         self.setTabStopWidth(self.fontMetrics().width(' ') * 4)
         self.zoomIn(2)
@@ -60,5 +68,31 @@ class CodeEditor(QPlainTextEdit):
     def insert_asign_sign(self):
         self.insertPlainText(":=")
 
+
+
+    def show_custom_menu(self, position):
+        # Create a custom context menu
+        menu = QMenu()
+        cut_action = menu.addAction(QIcon('gui/icons/cut.png'), "Cut")
+        copy_action = menu.addAction(QIcon('gui/icons/copy.png'),"Copy")
+        paste_action = menu.addAction(QIcon('gui/icons/paste.png'),"Paste")
+        # Connect actions to their respective methods
+        cut_action.triggered.connect(self.cut)
+        copy_action.triggered.connect(self.copy)
+        paste_action.triggered.connect(self.paste)
+        # Show the menu at the cursor position
+        menu.exec_(self.mapToGlobal(position))
+
+    def eventFilter(self, obj, event):
+        if obj == self and event.type() == QEvent.KeyPress:
+            if event.key() == Qt.Key_Z and event.modifiers() == Qt.ControlModifier:
+                print("Custom undo triggered")
+                # Perform custom undo logic here
+                return True
+            elif event.key() == Qt.Key_Y and event.modifiers() == Qt.ControlModifier:
+                print("Custom redo triggered")
+                # Perform custom redo logic here
+                return True
+        return super().eventFilter(obj, event)
 
 

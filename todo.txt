@@ -1,10 +1,7 @@
 TODO:
 - undo
 - report sections
-- no ; for comments
 - possible 5[m]
-- help content
-- info
 - wiki
 - english language speling correction
 - sectionbase
@@ -15,6 +12,8 @@ INPROGRESS:
 
 
 DONE:
+- help content
+- info
 - clipboard features
 - keep scroll scroll potition
 - math functions

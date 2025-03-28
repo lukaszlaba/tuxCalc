@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 from unum import Unum as __Unum
 import math
+from unum.units import *
 
 # Unum customization
 __Unum.UNIT_SEP = '*'
@@ -123,3 +124,8 @@ gn = 9.80665 * m / s**2
 #----------------------------added for testcalc -----------------------
 radian  = __Unum.unit('radian', 1)                 # [radian] unit definition
 degree  = __Unum.unit('degree', 2*math.pi/360)     # [degree] unit definition
+
+if __name__ == '__main__':
+    for i in dir():
+        if type(eval(i)) == type(m):
+            print(i, end =', ')

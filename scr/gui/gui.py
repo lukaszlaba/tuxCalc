@@ -3,6 +3,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QPlainTextEdit, QToolBar, QAction, QStatusBar, QSplitter
 
 from editor import CodeEditor
+import content_text_welcome, content_text_help, content_text_about
+
+
+
 
 
 class gui(QMainWindow):
@@ -11,7 +15,7 @@ class gui(QMainWindow):
         #--------------------------
         self.help_editor = CodeEditor()
         self.help_editor.setReadOnly(True)
-        self.help_efitor_style()
+        self.help_editor_style()
 
         self.editor = CodeEditor()
 
@@ -146,14 +150,14 @@ class gui(QMainWindow):
     def editor_style_done(self):
         self.editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: rgb(240, 255, 240); font-family: Courier New;}''')
 
-    def help_efitor_style(self):
-        self.help_editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: white; font-family: Courier New;}''')
+    def help_editor_style(self):
+        self.help_editor.setStyleSheet('''QPlainTextEdit {padding-left:2; background-color: rgb(235, 235, 255); font-family: Courier New;}''')
 
     def show_help(self):
         self.about_action.setChecked(False)
         if self.help_action.isChecked():
             self.help_editor.show()
-            self.help_editor.setPlainText('Help ..')
+            self.help_editor.setPlainText(content_text_help.text)
         else:
             self.help_editor.hide()
 
@@ -161,9 +165,12 @@ class gui(QMainWindow):
         self.help_action.setChecked(False)
         if self.about_action.isChecked():
             self.help_editor.show()
-            self.help_editor.setPlainText('About ...')
+            self.help_editor.setPlainText(content_text_about.text)
         else:
             self.help_editor.hide()
+
+    def show_welcom_text(self):
+        self.editor.setPlainText(content_text_welcome.text)
 
 
 
