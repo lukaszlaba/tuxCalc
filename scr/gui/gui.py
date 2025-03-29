@@ -15,9 +15,11 @@ class gui(QMainWindow):
         #--------------------------
         self.help_editor = CodeEditor()
         self.help_editor.setReadOnly(True)
+        self.help_editor.highlighter.is_active = False
         self.help_editor_style()
 
         self.editor = CodeEditor()
+        self.editor.highlighter.is_active = False
 
         self.splitter = QSplitter(Qt.Horizontal)
         self.setCentralWidget(self.splitter)
@@ -132,6 +134,13 @@ class gui(QMainWindow):
 
         self.toolbar.addSeparator()
 
+        self.spelling_action = QAction(QIcon('gui/icons/spelling.png'), 'Spelling check', self)
+        self.spelling_action.setCheckable(True)
+        self.spelling_action.triggered.connect(self.activate_spelling)
+        self.toolbar.addAction(self.spelling_action)
+
+        self.toolbar.addSeparator()
+
         self.print_action = QAction(QIcon('gui/icons/print.png'), 'Print', self)
         self.toolbar.addAction(self.print_action)
 
@@ -168,6 +177,13 @@ class gui(QMainWindow):
             self.help_editor.setPlainText(content_text_about.text)
         else:
             self.help_editor.hide()
+
+    def activate_spelling(self):
+        if self.spelling_action.isChecked():
+            self.editor.highlighter.is_active = True
+        else:
+            self.editor.highlighter.is_active = False
+        self.editor.highlighter.rehighlight()
 
     def show_welcom_text(self):
         self.editor.setPlainText(content_text_welcome.text)

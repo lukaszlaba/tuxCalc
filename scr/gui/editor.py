@@ -8,14 +8,16 @@ from PyQt5.QtGui import QTextCursor
 
 from  greek_dict import greek_dict
 
-class CodeEditor(QPlainTextEdit):
+from spell import SpellTextEdit
+
+class CodeEditor(SpellTextEdit):
     def __init__(self, parent = None):
         super().__init__()
         #----to overwrite defaul undo
         self.installEventFilter(self)
         #----
-        self.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.customContextMenuRequested.connect(self.show_custom_menu)
+        #self.setContextMenuPolicy(Qt.CustomContextMenu)
+        #self.customContextMenuRequested.connect(self.show_custom_menu)
         #----
         self.cursorPositionChanged.connect(self.highlightCurrentLine)
         self.setTabStopWidth(self.fontMetrics().width(' ') * 4)
