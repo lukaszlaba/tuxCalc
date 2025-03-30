@@ -41,6 +41,7 @@ tuxCalc is based on Python 3 and few non-standard Python library:
 
   - PyQt5 (https://www.riverbankcomputing.com/software/pyqt) - user interface
   - Unum (https://pypi.python.org/pypi/Unum) - it is what make unit calculation possible
+  - Pyenchant (https://pypi.org/project/pyenchant/) - it is what make spelling correction possible
 
 How to run it
 -------------
