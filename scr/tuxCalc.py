@@ -9,6 +9,9 @@
 import sys
 import os
 
+import enchant
+import unum
+
 
 import codecs
 
@@ -22,7 +25,7 @@ from pycore import ctext_process
 from pycore.ctext_process import process, remove_debug_notyfications, format_udot
 
 APPNAME = 'tuxCalc'
-VERSION = '0.1.2 wip'
+VERSION = '0.2.1'
 FILEPATH = ''
 SAVEDIR = ''
 

@@ -1,3 +1,4 @@
+# This file is part of tuxCalc
 text='''
 tuxCalc info
 ------------

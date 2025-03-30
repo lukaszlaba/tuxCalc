@@ -1,3 +1,4 @@
+# This file is part of tuxCalc
 from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QPlainTextEdit, QToolBar, QAction, QStatusBar, QSplitter
@@ -5,18 +6,14 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QPlainTextEd
 from editor import CodeEditor
 import content_text_welcome, content_text_help, content_text_about
 
-
-
-
-
 class gui(QMainWindow):
     def __init__(self):
         super().__init__()
         #--------------------------
-        self.help_editor = CodeEditor()
+        self.help_editor = QPlainTextEdit()
         self.help_editor.setReadOnly(True)
-        self.help_editor.highlighter.is_active = False
         self.help_editor_style()
+        self.help_editor.zoomIn(2)
 
         self.editor = CodeEditor()
         self.editor.highlighter.is_active = False
@@ -74,13 +71,15 @@ class gui(QMainWindow):
         self.toolbar.addSeparator()
 
         self.zoon_in_action = QAction(QIcon('gui/icons/zoom_in.png'), 'Zoom in', self)
-        self.zoon_in_action.setStatusTip('Zoom in font in editor')
+        self.zoon_in_action.setStatusTip('Zoom in font')
         self.zoon_in_action.triggered.connect(self.editor.zoomIn)
+        self.zoon_in_action.triggered.connect(self.help_editor.zoomIn)
         self.toolbar.addAction(self.zoon_in_action)
 
         self.zoon_out_action = QAction(QIcon('gui/icons/zoom_out.png'), 'Zoom out', self)
-        self.zoon_out_action.setStatusTip('Zoom out font in editor')
+        self.zoon_out_action.setStatusTip('Zoom out font')
         self.zoon_out_action.triggered.connect(self.editor.zoomOut)
+        self.zoon_out_action.triggered.connect(self.help_editor.zoomOut)
         self.toolbar.addAction(self.zoon_out_action)
 
         self.toolbar.addSeparator()
@@ -187,20 +186,3 @@ class gui(QMainWindow):
 
     def show_welcom_text(self):
         self.editor.setPlainText(content_text_welcome.text)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

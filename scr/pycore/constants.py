@@ -1,3 +1,4 @@
+# This file is part of tuxCalc
 import units as u
 
 from math import pi, e

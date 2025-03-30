@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
-#-----------------------------------------------------------------
-# Copyright (C) 2021, the Loge development team
-#
-# This file is part of Loge
-# Loge is distributed under the terms of GNU General Public License
-# The full license can be found in 'license.txt'
-# Loge development team can be found in 'development.txt'
-#-----------------------------------------------------------------
+# This file is part of tuxCalc
 
 greek_dict =    {
                 'a':'α',

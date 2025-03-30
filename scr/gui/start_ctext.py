@@ -1,3 +1,4 @@
+# This file is part of tuxCalc
 text='''    _____              _________      ______
     __  /____  _____  ___  ____/_____ ___  /______
     _  __/  / / /_  |/_/  /    _  __ `/_  /_  ___/
@@ -18,7 +19,7 @@ Assume the section is rectangular
 b := 15*u.cm ; section width
 h := 40*u.cm ; section height
 W := b*h^2/6= 4000.00*[cm3]
-Maksimum stress in section
+Maximum stress in section
 σ_max := M / W = 0.49*[MPa]
 σ_max = 0.07*[ksi]
 --------------------------------------------------
